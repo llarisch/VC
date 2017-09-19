@@ -1,0 +1,3 @@
+[submodule "TdLib"]
+	path = TdLib
+	url = https://github.com/freetdi/tdlib.git
