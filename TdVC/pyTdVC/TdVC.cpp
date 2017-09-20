@@ -832,7 +832,7 @@ static char __pyx_k_graphtype_to_uint[] = "graphtype_to_uint";
 static char __pyx_k_inverse_labels_dict[] = "inverse_labels_dict";
 static char __pyx_k_boost_graph_directed[] = "boost_graph_directed";
 static char __pyx_k_boost_graph_undirected[] = "boost_graph_undirected";
-static char __pyx_k_home_user_projects_VC_TD_VC_pyT[] = "/home/user/projects/VC/TD_VC/pyTdVC/TdVC.pyx";
+static char __pyx_k_home_user_projects_VC_TdVC_pyTd[] = "/home/user/projects/VC/TdVC/pyTdVC/TdVC.pyx";
 static char __pyx_k_min_vertex_cover_with_treedecomp[] = "min_vertex_cover_with_treedecomposition";
 static PyObject *__pyx_n_s_Decomp;
 static PyObject *__pyx_n_s_E_G;
@@ -855,7 +855,7 @@ static PyObject *__pyx_n_s_boost_graph_undirected;
 static PyObject *__pyx_n_s_edges;
 static PyObject *__pyx_n_s_graphtype;
 static PyObject *__pyx_n_s_graphtype_to_uint;
-static PyObject *__pyx_kp_s_home_user_projects_VC_TD_VC_pyT;
+static PyObject *__pyx_kp_s_home_user_projects_VC_TdVC_pyTd;
 static PyObject *__pyx_n_s_i;
 static PyObject *__pyx_n_s_import;
 static PyObject *__pyx_n_s_inv_dict;
@@ -3821,7 +3821,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_edges, __pyx_k_edges, sizeof(__pyx_k_edges), 0, 0, 1, 1},
   {&__pyx_n_s_graphtype, __pyx_k_graphtype, sizeof(__pyx_k_graphtype), 0, 0, 1, 1},
   {&__pyx_n_s_graphtype_to_uint, __pyx_k_graphtype_to_uint, sizeof(__pyx_k_graphtype_to_uint), 0, 0, 1, 1},
-  {&__pyx_kp_s_home_user_projects_VC_TD_VC_pyT, __pyx_k_home_user_projects_VC_TD_VC_pyT, sizeof(__pyx_k_home_user_projects_VC_TD_VC_pyT), 0, 0, 1, 0},
+  {&__pyx_kp_s_home_user_projects_VC_TdVC_pyTd, __pyx_k_home_user_projects_VC_TdVC_pyTd, sizeof(__pyx_k_home_user_projects_VC_TdVC_pyTd), 0, 0, 1, 0},
   {&__pyx_n_s_i, __pyx_k_i, sizeof(__pyx_k_i), 0, 0, 1, 1},
   {&__pyx_n_s_import, __pyx_k_import, sizeof(__pyx_k_import), 0, 0, 1, 1},
   {&__pyx_n_s_inv_dict, __pyx_k_inv_dict, sizeof(__pyx_k_inv_dict), 0, 0, 1, 1},
@@ -3864,7 +3864,7 @@ static int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__2 = PyTuple_Pack(6, __pyx_n_s_X, __pyx_n_s_labels_map, __pyx_n_s_X_2, __pyx_n_s_x, __pyx_n_s_Y, __pyx_n_s_x_2); if (unlikely(!__pyx_tuple__2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 89; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__2);
   __Pyx_GIVEREF(__pyx_tuple__2);
-  __pyx_codeobj__3 = (PyObject*)__Pyx_PyCode_New(2, 0, 6, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__2, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_user_projects_VC_TD_VC_pyT, __pyx_n_s_apply_labeling, 89, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 89; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_codeobj__3 = (PyObject*)__Pyx_PyCode_New(2, 0, 6, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__2, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_user_projects_VC_TdVC_pyTd, __pyx_n_s_apply_labeling, 89, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 89; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
   /* "TdVC.pyx":107
  * 
@@ -3876,7 +3876,7 @@ static int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__4 = PyTuple_Pack(3, __pyx_n_s_labels_map, __pyx_n_s_inv_dict, __pyx_n_s_i); if (unlikely(!__pyx_tuple__4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 107; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__4);
   __Pyx_GIVEREF(__pyx_tuple__4);
-  __pyx_codeobj__5 = (PyObject*)__Pyx_PyCode_New(1, 0, 3, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__4, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_user_projects_VC_TD_VC_pyT, __pyx_n_s_inverse_labels_dict, 107, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 107; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_codeobj__5 = (PyObject*)__Pyx_PyCode_New(1, 0, 3, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__4, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_user_projects_VC_TdVC_pyTd, __pyx_n_s_inverse_labels_dict, 107, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 107; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
   /* "TdVC.pyx":114
  * 
@@ -3888,7 +3888,7 @@ static int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__6 = PyTuple_Pack(1, __pyx_n_s_string); if (unlikely(!__pyx_tuple__6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 114; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__6);
   __Pyx_GIVEREF(__pyx_tuple__6);
-  __pyx_codeobj__7 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_user_projects_VC_TD_VC_pyT, __pyx_n_s_graphtype_to_uint, 114, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 114; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_codeobj__7 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_user_projects_VC_TdVC_pyTd, __pyx_n_s_graphtype_to_uint, 114, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 114; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
   /* "TdVC.pyx":123
  * 
@@ -3900,7 +3900,7 @@ static int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__8 = PyTuple_Pack(14, __pyx_n_s_G, __pyx_n_s_T, __pyx_n_s_V_G, __pyx_n_s_E_G, __pyx_n_s_E_T, __pyx_n_s_VC, __pyx_n_s_V_T, __pyx_n_s_labels_map, __pyx_n_s_inv_labels_dict, __pyx_n_s_rtn, __pyx_n_s_graphtype, __pyx_n_s_py_VC, __pyx_n_s_i, __pyx_n_s_pyVCi); if (unlikely(!__pyx_tuple__8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 123; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__8);
   __Pyx_GIVEREF(__pyx_tuple__8);
-  __pyx_codeobj__9 = (PyObject*)__Pyx_PyCode_New(2, 0, 14, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__8, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_user_projects_VC_TD_VC_pyT, __pyx_n_s_min_vertex_cover_with_treedecomp, 123, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 123; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_codeobj__9 = (PyObject*)__Pyx_PyCode_New(2, 0, 14, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__8, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_user_projects_VC_TdVC_pyTd, __pyx_n_s_min_vertex_cover_with_treedecomp, 123, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 123; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;

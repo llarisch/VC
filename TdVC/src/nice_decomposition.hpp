@@ -27,8 +27,8 @@
  *
  */
 
-#ifndef TD_NICE_DECOMPOSITION
-#define TD_NICE_DECOMPOSITION
+#ifndef TDVCNICE
+#define TDVCNICE
 
 #include <set>
 #include <vector>
@@ -370,7 +370,7 @@ void nicify(T_t &T){
 
 } //namespace treedec
 
-#endif //TD_NICE_DECOMPOSITION
+#endif //TDVCNICE
 
 // vim:ts=8:sw=4:et
 

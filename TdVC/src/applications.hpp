@@ -29,8 +29,8 @@
  *
  */
 
-#ifndef TD_APPLICATIONS
-#define TD_APPLICATIONS
+#ifndef TDVCAPP
+#define TDVCAPP
 
 #include <map>
 #include <set>
@@ -40,7 +40,7 @@
 #include <boost/graph/adjacency_list.hpp>
 #include <boost/tuple/tuple.hpp>
 
-#include <tdlib/nice_decomposition.hpp>
+#include "nice_decomposition.hpp"
 #include <tdlib/simple_graph_algos.hpp>
 #include <tdlib/misc.hpp>
 #include <tdlib/graph.hpp>
@@ -344,6 +344,6 @@ unsigned int min_vertex_cover_with_treedecomposition(G_t &G, T_t &T,
 
 } //namespace treedec
 
-#endif //TD_APPLICATIONS
+#endif //TdVC
 
 // vim:ts=8:sw=4:et
