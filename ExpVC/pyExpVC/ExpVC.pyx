@@ -74,7 +74,7 @@ def graphtype_to_uint(string):
         raise Exception
 
 
-def min_vertex_cover_exponential(G, T):
+def min_vertex_cover_exponential(G):
     """
     Computes a minimum vertex cover.
 

@@ -763,7 +763,6 @@ int __pyx_module_is_main_ExpVC = 0;
 static PyObject *__pyx_builtin_range;
 static PyObject *__pyx_builtin_Exception;
 static char __pyx_k_G[] = "G";
-static char __pyx_k_T[] = "T";
 static char __pyx_k_X[] = "X";
 static char __pyx_k_Y[] = "Y";
 static char __pyx_k_i[] = "i";
@@ -801,7 +800,6 @@ static PyObject *__pyx_n_s_Exception;
 static PyObject *__pyx_n_s_ExpVC;
 static PyObject *__pyx_n_s_G;
 static PyObject *__pyx_n_s_Graph;
-static PyObject *__pyx_n_s_T;
 static PyObject *__pyx_n_s_VC;
 static PyObject *__pyx_n_s_V_G;
 static PyObject *__pyx_n_s_X;
@@ -833,7 +831,7 @@ static PyObject *__pyx_n_s_x_2;
 static PyObject *__pyx_pf_5ExpVC_apply_labeling(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_X, PyObject *__pyx_v_labels_map); /* proto */
 static PyObject *__pyx_pf_5ExpVC_2inverse_labels_dict(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_labels_map); /* proto */
 static PyObject *__pyx_pf_5ExpVC_4graphtype_to_uint(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_string); /* proto */
-static PyObject *__pyx_pf_5ExpVC_6min_vertex_cover_exponential(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_G, CYTHON_UNUSED PyObject *__pyx_v_T); /* proto */
+static PyObject *__pyx_pf_5ExpVC_6min_vertex_cover_exponential(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_G); /* proto */
 static PyObject *__pyx_int_0;
 static PyObject *__pyx_int_1;
 static PyObject *__pyx_tuple_;
@@ -2077,75 +2075,27 @@ static PyObject *__pyx_pf_5ExpVC_4graphtype_to_uint(CYTHON_UNUSED PyObject *__py
 /* "ExpVC.pyx":77
  * 
  * 
- * def min_vertex_cover_exponential(G, T):             # <<<<<<<<<<<<<<
+ * def min_vertex_cover_exponential(G):             # <<<<<<<<<<<<<<
  *     """
  *     Computes a minimum vertex cover.
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5ExpVC_7min_vertex_cover_exponential(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_5ExpVC_7min_vertex_cover_exponential(PyObject *__pyx_self, PyObject *__pyx_v_G); /*proto*/
 static char __pyx_doc_5ExpVC_6min_vertex_cover_exponential[] = "\n    Computes a minimum vertex cover.\n\n    INPUTS:\n\n    - G : input graph\n\n    OUTPUT:\n\n    - VC:    a minimal vertex cover in G\n\n    EXAMPLES:\n\n        VC = ExpVC.min_vertex_cover(G)\n    ";
-static PyMethodDef __pyx_mdef_5ExpVC_7min_vertex_cover_exponential = {"min_vertex_cover_exponential", (PyCFunction)__pyx_pw_5ExpVC_7min_vertex_cover_exponential, METH_VARARGS|METH_KEYWORDS, __pyx_doc_5ExpVC_6min_vertex_cover_exponential};
-static PyObject *__pyx_pw_5ExpVC_7min_vertex_cover_exponential(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  PyObject *__pyx_v_G = 0;
-  CYTHON_UNUSED PyObject *__pyx_v_T = 0;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
+static PyMethodDef __pyx_mdef_5ExpVC_7min_vertex_cover_exponential = {"min_vertex_cover_exponential", (PyCFunction)__pyx_pw_5ExpVC_7min_vertex_cover_exponential, METH_O, __pyx_doc_5ExpVC_6min_vertex_cover_exponential};
+static PyObject *__pyx_pw_5ExpVC_7min_vertex_cover_exponential(PyObject *__pyx_self, PyObject *__pyx_v_G) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("min_vertex_cover_exponential (wrapper)", 0);
-  {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_G,&__pyx_n_s_T,0};
-    PyObject* values[2] = {0,0};
-    if (unlikely(__pyx_kwds)) {
-      Py_ssize_t kw_args;
-      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
-      switch (pos_args) {
-        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
-        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
-        case  0: break;
-        default: goto __pyx_L5_argtuple_error;
-      }
-      kw_args = PyDict_Size(__pyx_kwds);
-      switch (pos_args) {
-        case  0:
-        if (likely((values[0] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_G)) != 0)) kw_args--;
-        else goto __pyx_L5_argtuple_error;
-        case  1:
-        if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_T)) != 0)) kw_args--;
-        else {
-          __Pyx_RaiseArgtupleInvalid("min_vertex_cover_exponential", 1, 2, 2, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-        }
-      }
-      if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "min_vertex_cover_exponential") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-      }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
-      goto __pyx_L5_argtuple_error;
-    } else {
-      values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
-      values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
-    }
-    __pyx_v_G = values[0];
-    __pyx_v_T = values[1];
-  }
-  goto __pyx_L4_argument_unpacking_done;
-  __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("min_vertex_cover_exponential", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-  __pyx_L3_error:;
-  __Pyx_AddTraceback("ExpVC.min_vertex_cover_exponential", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __Pyx_RefNannyFinishContext();
-  return NULL;
-  __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_5ExpVC_6min_vertex_cover_exponential(__pyx_self, __pyx_v_G, __pyx_v_T);
+  __pyx_r = __pyx_pf_5ExpVC_6min_vertex_cover_exponential(__pyx_self, ((PyObject *)__pyx_v_G));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_5ExpVC_6min_vertex_cover_exponential(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_G, CYTHON_UNUSED PyObject *__pyx_v_T) {
+static PyObject *__pyx_pf_5ExpVC_6min_vertex_cover_exponential(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_G) {
   std::vector<unsigned int>  __pyx_v_V_G;
   std::vector<unsigned int>  __pyx_v_E_G;
   std::vector<unsigned int>  __pyx_v_VC_;
@@ -2457,7 +2407,7 @@ static PyObject *__pyx_pf_5ExpVC_6min_vertex_cover_exponential(CYTHON_UNUSED PyO
   /* "ExpVC.pyx":77
  * 
  * 
- * def min_vertex_cover_exponential(G, T):             # <<<<<<<<<<<<<<
+ * def min_vertex_cover_exponential(G):             # <<<<<<<<<<<<<<
  *     """
  *     Computes a minimum vertex cover.
  */
@@ -2572,7 +2522,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_ExpVC, __pyx_k_ExpVC, sizeof(__pyx_k_ExpVC), 0, 0, 1, 1},
   {&__pyx_n_s_G, __pyx_k_G, sizeof(__pyx_k_G), 0, 0, 1, 1},
   {&__pyx_n_s_Graph, __pyx_k_Graph, sizeof(__pyx_k_Graph), 0, 0, 1, 1},
-  {&__pyx_n_s_T, __pyx_k_T, sizeof(__pyx_k_T), 0, 0, 1, 1},
   {&__pyx_n_s_VC, __pyx_k_VC, sizeof(__pyx_k_VC), 0, 0, 1, 1},
   {&__pyx_n_s_V_G, __pyx_k_V_G, sizeof(__pyx_k_V_G), 0, 0, 1, 1},
   {&__pyx_n_s_X, __pyx_k_X, sizeof(__pyx_k_X), 0, 0, 1, 1},
@@ -2654,14 +2603,14 @@ static int __Pyx_InitCachedConstants(void) {
   /* "ExpVC.pyx":77
  * 
  * 
- * def min_vertex_cover_exponential(G, T):             # <<<<<<<<<<<<<<
+ * def min_vertex_cover_exponential(G):             # <<<<<<<<<<<<<<
  *     """
  *     Computes a minimum vertex cover.
  */
-  __pyx_tuple__7 = PyTuple_Pack(11, __pyx_n_s_G, __pyx_n_s_T, __pyx_n_s_V_G, __pyx_n_s_E_G, __pyx_n_s_VC, __pyx_n_s_labels_map, __pyx_n_s_inv_labels_dict, __pyx_n_s_graphtype, __pyx_n_s_py_VC, __pyx_n_s_i, __pyx_n_s_pyVCi); if (unlikely(!__pyx_tuple__7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__7 = PyTuple_Pack(10, __pyx_n_s_G, __pyx_n_s_V_G, __pyx_n_s_E_G, __pyx_n_s_VC, __pyx_n_s_labels_map, __pyx_n_s_inv_labels_dict, __pyx_n_s_graphtype, __pyx_n_s_py_VC, __pyx_n_s_i, __pyx_n_s_pyVCi); if (unlikely(!__pyx_tuple__7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__7);
   __Pyx_GIVEREF(__pyx_tuple__7);
-  __pyx_codeobj__8 = (PyObject*)__Pyx_PyCode_New(2, 0, 11, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__7, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_user_projects_VC_ExpVC_pyE, __pyx_n_s_min_vertex_cover_exponential, 77, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_codeobj__8 = (PyObject*)__Pyx_PyCode_New(1, 0, 10, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__7, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_user_projects_VC_ExpVC_pyE, __pyx_n_s_min_vertex_cover_exponential, 77, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -2833,7 +2782,7 @@ PyMODINIT_FUNC PyInit_ExpVC(void)
   /* "ExpVC.pyx":77
  * 
  * 
- * def min_vertex_cover_exponential(G, T):             # <<<<<<<<<<<<<<
+ * def min_vertex_cover_exponential(G):             # <<<<<<<<<<<<<<
  *     """
  *     Computes a minimum vertex cover.
  */
