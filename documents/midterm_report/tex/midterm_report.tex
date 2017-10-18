@@ -9,6 +9,8 @@
 \usepackage{xcolor,colortbl}
 \usepackage{url}
 \usepackage{caption}
+%\usepackage{algorithmic}
+\usepackage{algorithm}
 
 \newcommand{\mc}[2]{\multicolumn{#1}{c}{#2}}
 \definecolor{Gray}{gray}{0.85}
@@ -33,13 +35,14 @@
 
 \parindent 0pt
 
+
 \begin{document}
 
 \maketitle
 
 \section{Introduction}
 
-Our course project will cover the vertex cover problem, a problem included in Karp's list of 21 NP-complete  problems \cite{karp, wiki}. We will implement two algorithms for finding a minimal vertex cover on undirected graphs: The first algorithm with exponential running time uses a reduction from the max-$\CLIQUE$ problem \cite{Patric}, the second algorithm solves the problem with help of tree decompositions \cite{survey, graphminor, arnborg}, which makes it possible to experimentally examine the constants hidded in Courcelle's theorem (1990):
+Our course project will cover the vertex cover problem (VC), a problem included in Karp's list of 21 NP-complete  problems \cite{karp, wiki}. We will implement two algorithms for finding a minimal vertex cover on undirected graphs: The first algorithm with exponential running time uses a reduction from the max-Clique problem \cite{Patric}, the second algorithm solves the problem with help of tree decompositions \cite{survey, graphminor, arnborg}, which makes it possible to experimentally examine the constants hidded in Courcelle's theorem (1990):
 
 \begin{theorem}
 Every graph property definable in monadic second-order logic can be decided in linear time on graphs of bounded treewidth.
@@ -64,15 +67,15 @@ A \emph{minimum vertex cover} is a vertex cover of minimum size among all vertex
 
 \end{definition}
 
-This means that a vertex cover $C$ of a graph $G$ is a subset of the vertices of $G$, such that all edges of $G$ have an endpoint in $C$. \\
+Less formal, this means that a vertex cover $C$ of a graph $G$ is a subset of the vertices of $G$, such that all edges of $G$ have an endpoint in $C$. \\
 
 
 \section{The algorithms}
 
 \subsection{VERTEX COVER $\leq_{p}$ CLIQUE}
 
-We are going to use a reduction from the vertex cover problem to the maximum clique problem since both problems are NP-complete \cite{Patric}:
-In order to solve the vertex cover problem on a graph $G$, we solve the clique problem on a graph $G'$ derived from $G$ first. We then convert the solution of the clique problem to a solution of the vertex cover problem.  
+We are going to use a polynomial reduction from the vertex cover problem to the maximum clique problem, which is possible because both problems are NP-complete \cite{Patric}:
+In order to solve the min-VC problem on a graph $G$, we solve the min-Clique problem on a graph $G'$ derived from $G$ first. We then convert the solution of the Clique problem to a solution of the VC problem.  
 
 \begin{definition}
 A \emph{clique} $C$ of a graph $G=(V,E)$ satisfies the following conditions:
@@ -87,10 +90,14 @@ A \emph{maximum clique} is a clique of maximum size among all cliques in $G$.
 
 In other words, a clique $C$ in a graph $G$ induces a complete subgraph in $G$. \\
 
-\begin{definition}[polynomial reduction]
-Let $L_{1}, L_{2}$ be decision problems. We say that $L_{1}$ is reducible to $L_{1}$ in polynomial time, denoted $L_{2} \leq_{p} L_{2}$, when there exists a deterministic algorithm $M$, such that $x \in L_{1} \iff M(x) \in L_{2}$, for all $w \in L_{1}$. \\
+\begin{definition}[decision problem]
+The relevant part of a decision problem $X(G,k)$ on a graph $G$ that we use in this report is to decide whether there exists a set $S \subseteq V(G)$, such that $S$ with $|S| = k$ satisfies the property $X$. 
+\end{definition}
 
-This means that there exists a deterministic algorithm $M$ for converting a solutions of $L_{2}$ on the modified input of $L_{1}$ to a solution of $L_{1}$. 
+\begin{definition}[polynomial reduction]
+Let $L_{1}, L_{2}$ be decision problems. We say that $L_{1}$ is reducible to $L_{1}$ in polynomial time, denoted $L_{2} \leq_{p} L_{2}$, when there exists a deterministic poly-time algorithm $M$, such that $x \in L_{1} \iff M(x) \in L_{2}$, for all $w \in L_{1}$. \\
+
+This means that there exists a deterministic polynomial time algorithm $M$ for converting a solution of $L_{2}$ on the modified input of $L_{1}$ to a solution of $L_{1}$. 
 \end{definition}
 
 \begin{lemma}
@@ -106,14 +113,69 @@ Let $\CLIQUE$ be a clique in $\bar G$ of size $|V(G)|-k$. For $\{v,w\} \in E(G)$
 \end{proof}
 
 \subsection{Algorithm 1}
-The first algorithm solves the minimum vertex cover problem using a solution for the maximum clique problem.
+The first algorithm solves the min-VC problem by using the polynomial reduction stated above. It solves the max-Clique problem in a graph $G$ that Östergård suggested in 2002 starts from a vertex $v_i$, $i=n, \dots, 1$, $n :=|V(G)|$, and builds the largest clique that includes $v_i$ from the set of vertices $S_i = \{v_i, ..., v_n\}$. The added advantage of this algorithm is the pruning strategy it uses to reduce the number of possible cliques.
 
-The algorithm for solving the maximum clique problem in a graph $G$ that Östergård suggested in 2002 starts from a vertex $v_i$, $i=n, \dots, 1$, $n :=|V(G)|$, and builds the largest clique that includes $v_i$ from the set of vertices $S_i = \{v_i, ..., v_n\}$. So, $S_n := \{v_n\}$ is considered first (clearly, $S_n$ is the largest clique itself). The algorithm then considers the largest clique in $S_{n-1}$ that contains $v_{n-1}$ and so on. The added advantage of this algorithm is the pruning strategy it uses to reduce the number of possible cliques.
+\begin{algorithm}[h!]
+\caption{max-Clique algorithm}
+\begin{algorithmic}[1]
 
+\State{/* global variables */}
+\State{$c[i]$ table, found bool, max integer}
+\State{}
+
+\Function{start}{}
+\State{max := 0}
+\For{i:=n to 1}
+\State{found := false}
+\State{clique($S_{i} \cap N(v_{i})$, 1)}
+\State{c[i] := max //largest clique in $S_{i}$}
+\EndFor
+\EndFunction
+
+\State{}
+
+\Function{clique}{$U$, size}
+
+\If{$U = \emptyset$}
+\If{size > max}
+\State{max := size}
+\State{save new record}
+\State{found := true}
+\EndIf
+\Return
+\EndIf
+
+\While{$U \not = \emptyset$}
+
+\If{size + $|U| \leq $ max}
+\Return
+\EndIf
+
+\State{$i := \min\{j: v_{j} \in U\}$}
+\If{size + $c[i] \leq $ max}
+\Return
+\EndIf
+
+\State{$U := U \backslash \{v_{i}\}$}
+\State{clique($U \cap N(v_{i}),$ size +1)}
+
+\If{found == true}
+\Return
+\EndIf
+\EndWhile
+
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+
+
+The algorithm has running time $\mathcal{O}(2^{n})$.
 
 \subsection{Algorithm 2}
 
 The second algorithm solves the minimum vertex cover problem with help of tree decompositions. The algorithm is an extension of the approach for solving the VC-problem on trees, i.e. a two-phase dynamic programming algorithm that, now on a treedecomposition, first creates tables for the power set of the vertices contained in a bag. This is initially done for bags corresponding to leaves of a tree decomposition. Then, all vertex covers listed in the created tables will be extended, if possible, to vertex covers of a larger subgraph of the original graph in a bottom-up manner until the root of the tree decomposition is reached. In the second phase, an optimal vertex cover is computed by a top-down run beginning on the root of the tree decomposition which examines the computed tables until the leafs is reached. \\
+
 The algorithm will work on \emph{nice tree decompositions}. For such type of TD's it is sufficient to state four rules on how to compute the tables within the algorithm. These four distinct rules are applicable on different types of nodes of a nice tree decomposition. The algorithm has running time $\mathcal{O}(2^{tw(G)+1} \cdot n^{O(1)})$, hence is a polynomial time algorithm for graphs of bounded treewidth. \\ 
 
 \begin{definition}
@@ -301,10 +363,9 @@ Finally, the "named" graphs are derived from the graph database of SageMath and 
 \captionof{table}{Statistics for the named graphs.}
 \end{table}
 
-\subsection{Results}
+%\subsection{Results}
 
-
-\section{Summary}
+%\section{Summary}
 
 
 \bibliographystyle{unsrt}
