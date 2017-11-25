@@ -16,6 +16,10 @@ sys.argv=sys.argv[:1]
 PREFIX = "Zoo"
 COUNT = 149
 
+def median(L):
+    L = sorted(L)
+    return L[len(L)/2]
+
 class TestTD_VC(unittest.TestCase):
     def test_min_vertex_cover(self):
         print("---vertex_cover---")
@@ -43,6 +47,8 @@ class TestTD_VC(unittest.TestCase):
 
         skip = 0
 
+        cnt = 0
+
         for i in range(0, COUNT+1):
             base.print_graph_name(PREFIX, i)
             G = Graph(eval(PREFIX+".V_"+str(i)), eval(PREFIX+".E_"+str(i)))
@@ -65,13 +71,14 @@ class TestTD_VC(unittest.TestCase):
                 print("w3: " + str(w3))
             """
 
-            if w > 30:
+            if w <= 20 or w > 27:
                 print("......skip")
                 skip += 1
                 continue
 
-            #s, S = tdlib.min_vertex_cover_with_treedecomposition2(G, T, False)
-            s = 0
+            cnt+=1
+
+            s, S = tdlib.min_vertex_cover_with_treedecomposition2(G, T, False)
             end = time.time()
 
             t = end-start
@@ -107,6 +114,8 @@ class TestTD_VC(unittest.TestCase):
         med_vc = median(VCs)
         med_tw = median(TWs)
         med_time = median(TIMEs)
+
+        print("#: " + str(cnt))
 
         print("avg n: " + str(avg_n))
         print("med n: " + str(med_n))

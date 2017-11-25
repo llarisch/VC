@@ -128,8 +128,6 @@ We refer to the sets $\beta(t)$ of a tree decomposition as \emph{bags}. The widt
 
 The algorithm will work on \emph{nice tree decompositions}. For such type of TDs it is sufficient to state four rules on how to compute the tables within the algorithm. These four distinct rules are applicable on different types of nodes of a nice tree decomposition. The algorithm has running time $\mathcal{O}(2^{tw(G)+1} \cdot n^{O(1)})$, hence is a polynomial time algorithm for graphs of bounded treewidth. \\ 
 
-\newpage
-
 \begin{definition}
 A tree decomposition $(T, \beta)$ of a graph $G$ is \emph{nice}, if it satisfies the following conditions: 
 
@@ -184,8 +182,12 @@ For $t \in V(T)$ and $X \subseteq \beta(t)$, let $\VC_{t}(X)$ be the minimum siz
 Using the propositions below, we can compute $\VC(X)$ f.a. $X \subseteq \beta(t), t \in V(T)$ in time $n^{\mathcal{O}(1)} \cdot 2^{k+1}$. The size of a minimum vertex cover of $G$ is $\min_{X \in \beta(r)} \VC(X)$, were $r \in V(T)$ is the root of $T$. We now can construct a minimum vertex cover by tracing back through the tree decomposition.
 
 \begin{proposition}
-\textbf{leaf:} Let $t$ be a leaf of $T$ with $\beta(t) = \{v\}$. Then $\VC(\{v\}) = 1$ and $\VC(\emptyset) = 0$. \qed
+\textbf{leaf:} Let $t$ be a leaf of $T$ with $\beta(t) = \{v\}$. Then $\VC(\{v\}) = 1$ and $\VC(\emptyset) = 0$.
 \end{proposition}
+
+\begin{proof}
+The zero- and one-vertex graph have the minimum vertex cover size of zero and one. In the latter, we assume $E(G) \not = \emptyset$. 
+\end{proof}
 
 \begin{proposition}
 \textbf{forget:} Let $t$ be a forget node of $T$ with child $s$ and $\beta(s) \backslash \beta(t) = \{v\}$. Then f.a. $X \in \beta(t), \VC(X) = \min \{\VC(X), \VC(X \cup \{v\})\}$.
@@ -226,7 +228,7 @@ If $X'$ is a vertex cover of $G[t]$ with $X' \cap \beta(t) = X$, then $X' \cap \
 
 \section{Implementation \& Experiments}
 
-Our code is implemented in C++ using boost graphs. We implemented a python interface in order to perform our experiments. Regarding the second algorithm, we use TdLib for the provision of tree decompositions; it is currently the fastes solver for the tree decomposition problem \cite{TdLib} \cite{PACE_2017}. Running times for exact and approximative solvers are heavily varying. The asymtotical running time behavior on the input size will be reported in the next Section. \\
+Our code is implemented in C++ using boost graphs. We implemented a Python interface in order to perform our experiments. Regarding the second algorithm, we use TdLib for the provision of tree decompositions; it is currently the fastes solver for the tree decomposition problem \cite{TdLib} \cite{PACE_2017}. Running times for exact and approximative solvers are heavily varying. The asymtotical running time behavior on the input size will be reported in the next Section. \\
 
 We evaluate our implementations on bounded treewidth graphs, partial k-trees, and named graphs included in the SageMath project. We do not consider graphs of treewidth greater than 30 as graphs of bounded treewidth. Hence, we do not include them in our tests although we report them.
 
@@ -269,8 +271,6 @@ Let $k \in \mathbb{N}$. The class of \emph{$k$-trees} is a graph class recursive
 
 A \emph{partial $k$-tree} is a subgraph of a $k$-tree.
 \end{definition}
-
-\newpage
 
 \begin{lemma}
 Let $G$ be a partial $k$-tree. Then $\tw(G) \leq k$.
@@ -362,16 +362,19 @@ Finally, the "named" graphs are derived from the graph database of SageMath and 
 \begin{center}
 \begin{table}[h!]
 \centering
-\begin{tabular}{|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|c|}
 \hline
-\#graphs & avg/med./max \#vert. & avg/med./max \#edges & avg/med./max $\tw$ \\
+package & \#graphs & avg/med./max \#vert. & avg/med./max \#edges & avg/med./max $\tw$ \\
 \hline \hline
-125 & 83.05/25/3282 & 166.63/60/6561 & 9.79/7/29 \\
+%all & 125 & 83.05/25/3282 & 166.63/60/6561 & 9.79/7/29 \\
+$0 \leq \tw \leq 10$ & 85 & 73.74/19/3282 & 132.40/36/6561 & 5.40/5/10 \\
 \hline
+$11 \leq \tw \leq 20$ & 25 & 57.42/45/255 & 147.21/105/507 & 16.04/16/20 \\
 \end{tabular}
 \captionof{table}{Statistics for the named graphs.}
 \end{table}
 \end{center}
+
 
 \subsection{Results}
 
@@ -392,10 +395,11 @@ fuzix & 529 & 1.97/2/6 & 20.76/12/295 & 0.0008/0.0003/0.0339 \\
 \hline
 \end{tabular}
 \captionof{table}{Results for the considered CFGs.}
+\label{results_CFGs}
 \end{table}
 \end{center}
 
-The computations of the TD-based algorithm on the test set of CFGs take less than a second in total, which is due to the fact that most CFGs have treewidth lower than 2 and are small (compare with Table \ref{stat_CFGs}). The paper about the treewidth of C proves that CFGs without \emph{goto} statements have treewidth at most 7 \cite{Ctree}. We used methodes included in TdLib that are exact for CFGs without \emph{goto} statements. More precisely, exact reduction rules that reduce graphs of treewidth at most $4$ to the empty graph, a generic heuristic and a postprocessing based on triangulization minimization are used. They have running time $\mathcal{O}(n^{3}), \mathcal{O}(n^{3})$ and $\mathcal{O}(n)$ respectively. The authors of the paper included this "pipeline" in compilers for the computation of several NP-hard problems that occur in them, e.g. register allocation.  
+The computations of the TD-based algorithm on the test set of CFGs take less than a second in total, which is due to the fact that most CFGs have treewidth lower than 2 and are small (compare with tables \ref{stat_CFGs}, \ref{results_CFGs}). The paper about the treewidth of C proves that CFGs without \emph{goto} statements have treewidth at most 7 \cite{Ctree}. We used methodes included in TdLib that are exact for CFGs without \emph{goto} statements. More precisely, exact reduction rules that reduce graphs of treewidth at most $4$ to the empty graph, a generic heuristic and a postprocessing based on triangulization minimization are used. They have running time $\mathcal{O}(n^{3}), \mathcal{O}(n^{3})$ and $\mathcal{O}(n)$ respectively. The authors of the paper included this "pipeline" in compilers for the computation of several NP-hard problems that occur in them, e.g. register allocation.  
 
 \begin{center}
 \begin{table}[h!]
@@ -416,10 +420,11 @@ $n$ & avg/med./max $\tw$. & avg/med./max $\VC$ & avg/med./max time[s] \\
 \hline
 \end{tabular}
 \captionof{table}{Results for the considered partial $k$-trees grouped by $n$.}
+\label{results_ktrees_n}
 \end{table}
 \end{center}
 
-By investigating the results for the partial $k$-trees grouped by $n$, we see that the running time of the TD-based algorithm depends linear (and not exponential) on $n$.
+By investigating the results for the partial $k$-trees grouped by $n$, we see that the running time of the TD-based algorithm depends linear (and not exponential) on $n$ (table \ref{results_ktrees_n}).
 
 \begin{center}
 \begin{table}[h!]
@@ -460,22 +465,38 @@ package & avg/med./max $\tw$. & avg/med./max $\VC$ & avg/med./max time[s] \\
 \hline
 \end{tabular}
 \captionof{table}{Results for the considered partial $k$-trees.}
+\label{results_ktrees_k}
 \end{table}
 \end{center}
 
-The situation is different when the results are grouped by $k$. Recall that on each bag of a TD exponentially (in the size of the bag) many intermediate results are computed and stored. For a graph of treewidth $k-1$, there exists a bag of size $k$ in an optimal TD. At this bag, $2^{k}$ intermediate results are computed. This fact is reflected in the running time of the TD-based algorithm, which is more or less doubling when incrementing $k$.
+The situation is different when the results are grouped by $k$. Recall that on each bag of a TD exponentially (in the size of the bag) many intermediate results are computed and stored. For a graph of treewidth $k-1$, there exists a bag of size $k$ in an optimal TD. At this bag, $2^{k}$ intermediate results are computed. This fact is reflected in the running time of the TD-based algorithm, which is more or less doubling when incrementing $k$ (table \ref{results_ktrees_n}).
 
-TODO: named graphs
+\begin{center}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+package & avg/med./max $\tw$. & avg/med./max $\VC$ & avg/med./max time[s] \\
+\hline \hline
+$0 \leq \tw \leq 10$ & 5.40/5/10 & 30.36/11/1095 & 0.0111/0.0017/0.5071 \\
+\hline
+$11 \leq \tw \leq 20$ & 16.04/16/20 & 36.08/24/170 & 31.3456/1.7467/447.1208 \\
+\end{tabular}
+\captionof{table}{Results for the considered partial $k$-trees.}
+\ref{results_named}
+\end{table}
+\end{center}
+
 
 \section{Summary}
 
-We experimentally showed that TD-based algorithms may be of practical use for solving NP-complete problems, here the vertex cover problem, on graph classes of bounded treewidth by comparing a standard exponential-time algorithm with an TD-based dynamic programming algorithm on control flow graphs derived from various C functions and random partial $k$-trees for small $k$, both having small treewidth. Furthermore we tested both algorithms on famous graphs, i.e. having a name; this test set contains graphs of prohibitively high treewidth, such that some graph have to be excluded for our experiments. Nevertheless, an optimal solution for the vertex cover problem could be computed in reasonable time by the TD-based algorithm for graphs having treewidth up to 29. The exponential time algorithm performs poorly on most graphs, because it does not make use of the special structure of graphs having low treewidth. Neglecting structural properties of graphs arising from treewidth, it exponentially depends on the size of input graphs, hence having no chance to deal graphs with a "large" number of vertices.
+We experimentally showed that TD-based algorithms may be of practical use for solving NP-complete problems, here the vertex cover problem, on graph classes of bounded treewidth by comparing a standard exponential-time algorithm with an TD-based dynamic programming algorithm on control flow graphs derived from various C functions and random partial $k$-trees for small $k$, both having small treewidth. Furthermore we tested both algorithms on famous graphs, i.e. having a name; this test set contains graphs of prohibitively high treewidth, such that some graph have to be excluded for our experiments. Nevertheless, an optimal solution for the vertex cover problem could be computed in reasonable time by the TD-based algorithm for graphs having treewidth up to 27. The exponential time algorithm performs poorly on most graphs, because it does not make use of the special structure of graphs having low treewidth. Neglecting structural properties of graphs arising from treewidth, it exponentially depends on the size of input graphs, hence having no chance to deal graphs with a "large" number of vertices.
 
 \bibliographystyle{unsrt}
 
 \begin{thebibliography}{9}
 
-\bibitem{karp} Karp, R. M. (1972). Reducibility Among Combinatorial Problems.. In R. E. Miller \& J. W. Thatcher (eds.), Complexity of Computer Computations (p./pp. 85-103), : Plenum Press, New York. ISBN: 0-306-30707-3
+\bibitem{karp} Karp, R. M. (1972). Reducibility among combinatorial problems. In R. E. Miller \& J. W. Thatcher (eds.), Complexity of Computer Computations (p./pp. 85-103): Plenum Press, New York. ISBN: 0-306-30707-3
 
 \bibitem{wiki} The vertex cover problem, \url{https://en.wikipedia.org/wiki/Vertex_cover}
 
