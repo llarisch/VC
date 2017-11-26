@@ -265,14 +265,19 @@ $k$ & avg/med./max \#edges & avg/med./max $\tw$ \\
 \frametitle{Statistics: "named" graphs}
 
 \begin{center}
-\footnotesize
+\tiny
 \begin{table}[h!]
 \centering
-\begin{tabular}{|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|c|}
 \hline
-\#graphs & avg/med./max \#vert. & avg/med./max \#edges & avg/med./max $\tw$ \\
+package & \#graphs & avg/med./max \#vert. & avg/med./max \#edges & avg/med./max $\tw$ \\
 \hline \hline
-125 & 83.05/25/3282 & 166.63/60/6561 & 9.79/7/29 \\
+%all & 125 & 83.05/25/3282 & 166.63/60/6561 & 9.79/7/29 \\
+$0 \leq \tw \leq 10$ & 85 & 73.74/19/3282 & 132.40/36/6561 & 5.40/5/10 \\
+\hline
+$11 \leq \tw \leq 20$ & 25 & 57.42/45/255 & 147.21/105/507 & 16.04/16/20 \\
+\hline
+$21 \leq \tw \leq 27$ & ? & 225.14/112/1023 & 481.71/210/2043 & 26.44/24/25 \\
 \hline
 \end{tabular}
 \captionof{table}{Statistics for the named graphs.}
@@ -426,7 +431,38 @@ package & avg/med./max $\tw$. & avg/med./max $\VC$ & avg/med./max time[s] \\
 \begin{frame}
 \frametitle{Results: "named" graphs}
 
-TODO
+\begin{center}
+\tiny
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+package & avg/med./max $\tw$. & avg/med./max $\VC$ & avg/med./max time[s] \\
+\hline \hline
+$0 \leq \tw \leq 10$ & 5.40/5/10 & 30.36/11/1095 & 0.0111/0.0017/0.5071 \\
+\hline
+$11 \leq \tw \leq 20$ & 16.04/16/20 & 36.08/24/170 & 31.3456/1.7467/447.1208 \\
+\hline
+$21 \leq \tw \leq 25$ & 26.44/24/25 & 140.29/56/682 & 2469.1672/2219.0984/7198.5197 \\
+\hline
+\end{tabular}
+\captionof{table}{Results for the considered partial $k$-trees.}
+\label{results_named}
+\end{table}
+\end{center}
+
+\begin{itemize}
+\item many "hard" graphs
+\item For hardest graph: 
+\begin{itemize}
+\item $1000 \cdot 2^{26}$ stored entries
+\item before applying "tricks": 4TB RAM necessary
+\item after applying "tricks": just 40TB RAM necessary
+\item  $>$ 70 billion computations
+\item running time: 2 hours
+\end{itemize}
+\item 3 graphs having $26 \leq \tw \leq 30$ could be solved in less than one day.
+\end{itemize}
 
 \end{frame}
 
@@ -434,7 +470,21 @@ TODO
 \begin{frame}
 \frametitle{Conclusions}
 
-We experimentally showed that TD-based algorithms may be of practical use for solving NP-complete problems, here the vertex cover problem, on graph classes of bounded treewidth by comparing a standard exponential-time algorithm with an TD-based dynamic programming algorithm on control flow graphs derived from various C functions and random partial $k$-trees for small $k$, both having small treewidth. Furthermore we tested both algorithms on famous graphs, i.e. having a name; this test set contains graphs of prohibitively high treewidth, such that some graph have to be excluded for our experiments. Nevertheless, an optimal solution for the vertex cover problem could be computed in reasonable time by the TD-based algorithm for graphs having treewidth up to 29. The exponential time algorithm performs poorly on most graphs, because it does not make use of the special structure of graphs having low treewidth. Neglecting structural properties of graphs arising from treewidth, it exponentially depends on the size of input graphs, hence having no chance to deal graphs with a "large" number of vertices.
+\begin{itemize}
+\item TD-based algos may be of practical use for solving NP-complete problems
+\item exp-time algos perform poorly on most graphs, they do not use the structure of graphs
+\vspace*{0.3cm}
+\item [] $\rightarrow$ When your problem is to hard in terms of complexity, consider using structural properties like treewidth.
+\vspace*{0.3cm}
+\item [] Many graphs from real-world problems are structural simple
+\begin{itemize}
+\item $\VC$ for train infrastructure
+\item [] $\rightarrow$ min-$\VC$ is min. number of stations that must run to use all tracks
+\item but: train network usually have a large grid minor $\rightarrow$ large treewidth
+\item use another structural property: train networks are almost planar
+\item [] $\rightarrow$ there are efficient algorithms for many problems on planar graphs
+\end{itemize} 
+\end{itemize}
 
 \end{frame}
 
