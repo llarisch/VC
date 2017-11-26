@@ -347,6 +347,29 @@ $k$ & avg/med./max \#edges & avg/med./max $\tw$ \\
 Finally, the "named" graphs are derived from the graph database of SageMath and can be found on github \cite{sage}, \cite{named_graphs}. Graphs as the Petersen graph (treewidth 4), the Balaban 11-cage graph (treewidth 25),the Ljubljana graph (treewidth 25), the Foster graph (treewidth 22) and the world map graph (edges between adjacent countries; treewidth 5) are included in this test set. The "named" graphs are clearly the most sophisticated graphs in terms of graph size and treewidth. Statistics on graphs included in this set that we do not consider for our experiments because of prohibitively high treewidth are stated in the appendix. \\
 
 \begin{center}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+package & \#graphs & avg/med./max \#vert. & avg/med./max \#edges & avg/med./max $\tw$ \\
+\hline \hline
+%all & 125 & 83.05/25/3282 & 166.63/60/6561 & 9.79/7/29 \\
+$0 \leq \tw \leq 10$ & 85 & 73.74/19/3282 & 132.40/36/6561 & 5.40/5/10 \\
+\hline
+$11 \leq \tw \leq 20$ & 25 & 57.42/45/255 & 147.21/105/507 & 16.04/16/20 \\
+\hline
+$21 \leq \tw \leq 27$ & ? & 225.14/112/1023 & 481.71/210/2043 & 26.44/24/25 \\
+\hline
+\end{tabular}
+\captionof{table}{Statistics for the named graphs.}
+\end{table}
+\end{center}
+
+
+\newpage
+
+
+\begin{center}
 \begin{figure}[h!]
 \includegraphics[scale=0.10]{Petersen}
 \hspace*{3mm}
@@ -358,42 +381,6 @@ Finally, the "named" graphs are derived from the graph database of SageMath and 
 \caption{The Petersen, Balaban 11-cage, Ljubljana and Foster graphs. Indeed, the last three graphs will be the hardest for the experiments.}
 \end{figure}
 \end{center}
-
-\begin{center}
-\begin{table}[h!]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|}
-\hline
-package & \#graphs & avg/med./max \#vert. & avg/med./max \#edges & avg/med./max $\tw$ \\
-\hline \hline
-%all & 125 & 83.05/25/3282 & 166.63/60/6561 & 9.79/7/29 \\
-$0 \leq \tw \leq 10$ & 85 & 73.74/19/3282 & 132.40/36/6561 & 5.40/5/10 \\
-\hline
-$11 \leq \tw \leq 20$ & 25 & 57.42/45/255 & 147.21/105/507 & 16.04/16/20 \\
-\end{tabular}
-\captionof{table}{Statistics for the named graphs.}
-\end{table}
-\end{center}
-
-avg n: 225.142857143
-med n: 112
-max n: 1023
-
-avg m: 481.714285714
-med m: 210
-max m: 2043
-
-avg tw: 26.4285714286
-med tw: 24
-max tw: 25
-
-avg vc: 140.285714286
-med vc: 56
-max vc: 682
-
-avg time: 2469.16724716
-med time: 2219.09839201
-max time: 7198.519701
 
 
 \subsection{Results}
@@ -501,12 +488,16 @@ package & avg/med./max $\tw$. & avg/med./max $\VC$ & avg/med./max time[s] \\
 $0 \leq \tw \leq 10$ & 5.40/5/10 & 30.36/11/1095 & 0.0111/0.0017/0.5071 \\
 \hline
 $11 \leq \tw \leq 20$ & 16.04/16/20 & 36.08/24/170 & 31.3456/1.7467/447.1208 \\
+\hline
+$21 \leq \tw \leq 25$ & 26.44/24/25 & 140.29/56/682 & 2469.1672/2219.0984/7198.5197 \\
+\hline
 \end{tabular}
 \captionof{table}{Results for the considered partial $k$-trees.}
-\ref{results_named}
+\label{results_named}
 \end{table}
 \end{center}
 
+TODO: Discussion
 
 \section{Summary}
 
