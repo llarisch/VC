@@ -257,6 +257,7 @@ fuzix & 529 & 42.07/24/587 & 45.13/24/668 & 1.97/2/6 \\
 \end{table}
 \end{center}
 
+\vspace*{-7mm}
 
 \begin{definition}[partial k-tree]
 Let $k \in \mathbb{N}$. The class of \emph{$k$-trees} is a graph class recursively defined as follows.
@@ -275,6 +276,8 @@ A \emph{partial $k$-tree} is a subgraph of a $k$-tree.
 \begin{lemma}
 Let $G$ be a partial $k$-tree. Then $\tw(G) \leq k$.
 \end{lemma}
+
+\newpage
 
 We consider several partial $k$-trees of different size and several $k$'s for our experiments. More precisely, we generated random partial $k$-trees for $k \in \{1, \dots, 15\}$ with $n \in \{50,100,200,250,500\}$ vertices and deleted each edge with probability $p \in \{.97, .95, .90, .80, .70\}$. We generated 5 different graphs for each $(k, n, p)$.
 
@@ -299,6 +302,8 @@ $n$ & avg/med./max \#edges & avg/med./max $\tw$ \\
 \captionof{table}{Statistics for the considered partial $k$-trees grouped by $n$.}
 \end{table}
 \end{center}
+
+\vspace*{-7mm}
 
 We additionally state the statistics for the considered partial $k$-trees grouped by $k$. The number of edges of the graphs are increasing with growing $k$. This is because of the construction of $k$-trees (adding $k$ edges from a new vertex to an existing $k$-clique). The treewidth of the graphs is increasing linear in $k$.
 
@@ -344,7 +349,9 @@ $k$ & avg/med./max \#edges & avg/med./max $\tw$ \\
 \end{table}
 \end{center}
 
-Finally, the "named" graphs are derived from the graph database of SageMath and can be found on github \cite{sage}, \cite{named_graphs}. Graphs as the Petersen graph (treewidth 4), the Balaban 11-cage graph (treewidth 25),the Ljubljana graph (treewidth 25), the Foster graph (treewidth 22) and the world map graph (edges between adjacent countries; treewidth 5) are included in this test set. The "named" graphs are clearly the most sophisticated graphs in terms of graph size and treewidth. Statistics on graphs included in this set that we do not consider for our experiments because of prohibitively high treewidth are stated in the appendix. \\
+\vspace*{-5mm}
+
+Finally, the "named" graphs are derived from the graph database of SageMath and can be found on github \cite{sage}, \cite{named_graphs}. Graphs as the Petersen graph (treewidth 4), the Balaban 11-cage graph (treewidth 25), the Ljubljana graph (treewidth 25), the Foster graph (treewidth 22) and the world map graph (edges between adjacent countries; treewidth 5) are included in this test set. The "named" graphs are clearly the most sophisticated graphs in terms of graph size and treewidth. Statistics on graphs included in this set that we do not consider for our experiments because of prohibitively high treewidth are stated in the appendix. \\
 
 \begin{center}
 \begin{table}[h!]
@@ -358,7 +365,7 @@ $0 \leq \tw \leq 10$ & 85 & 73.74/19/3282 & 132.40/36/6561 & 5.40/5/10 \\
 \hline
 $11 \leq \tw \leq 20$ & 25 & 57.42/45/255 & 147.21/105/507 & 16.04/16/20 \\
 \hline
-$21 \leq \tw \leq 27$ & ? & 225.14/112/1023 & 481.71/210/2043 & 26.44/24/25 \\
+$21 \leq \tw \leq 27$ & 8 & 225.14/112/1023 & 481.71/210/2043 & 26.44/24/25 \\
 \hline
 \end{tabular}
 \captionof{table}{Statistics for the named graphs.}
@@ -382,10 +389,73 @@ $21 \leq \tw \leq 27$ & ? & 225.14/112/1023 & 481.71/210/2043 & 26.44/24/25 \\
 \end{figure}
 \end{center}
 
+\vspace*{-10mm}
 
 \subsection{Results}
 
-We ran implementations of both algorithms on all mentioned graphs. We will report the average, median and maximum treewidth/vertex cover size/time for all graphs. The time measurements do not include reading the input graphs and writing solutions. In case of the TD-based algorithm, the runtime includes the conversion of the derived TD to a nice TD and the execution of the dynamic programming algorithm based on nice TDs. 
+We ran implementations of both algorithms on all mentioned graphs. We will report the average, median and maximum treewidth/vertex cover size/time. The time measurements do not include reading the input graphs and writing solutions. In case of the TD-based algorithm, the runtime includes the computation of optimal treedecompositions, the conversion of the derived TD to a nice TD and the execution of the dynamic programming algorithm based on nice TDs. 
+
+\begin{center}
+\footnotesize
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\#graphs & avg/med./max time[s] \\
+\hline \hline
+125 & 8.1831/0.0024/444.4748 \\
+\hline
+943 & 16.3669/0.0014/1463.5199 \\
+\hline
+436 & 2.7926/0.0027/846.7689 \\
+\hline
+\end{tabular}
+\captionof{table}{Algorithm 1. Results for the considered CFGs.}
+\end{table}
+\end{center}
+
+\vspace*{-7mm}
+
+Algorithm 1 was able to solve many CFGs in less than 30 minutes; especially graphs being smaller than the median in $n$ (which is very small for the considered CFGs) could be solved. The running time increased rapidly for graphs begin larger than the median size. The largest graphs could not be solved within reasonable time. 
+
+\begin{center}
+\footnotesize
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+$n$ & avg/med./max \#V. & avg/med./max \#E & avg/med./max time[s] \\
+\hline \hline
+8 & 6.0733/7/8 & 5.1233/6/8 & 0.0004/0.0003/0.0017  \\
+\hline
+13 & 10.8904/11/13 & 10.2591/10/15 & 0.0007/0.0007/0.0024 \\
+\hline
+21 & 17.3654/17/21 & 17.2724/17/24 & 0.0020/0.0018/0.0090 \\
+\hline
+34 & 26.9601/27/34 & 27.9635/28/38 & 0.0115/0.0076/0.0720  \\
+\hline
+34+ & 48.1595/46/72 & 51.1329/49/82 & 58.7046/0.1344/1463.5199  \\
+\hline
+\end{tabular}
+\captionof{table}{Algorithm 1. Results for CFGs grouped by $n$.}
+\end{table}
+\end{center}
+
+\vspace*{-7mm}
+
+The running time is of algorithm is exponential in $n$. Graphs having more than 72 vertices could not be solved in less than half an hour. \\
+
+The computations of the TD-based algorithm on the test set of CFGs took less than a second in total, which is due to the fact that most CFGs have treewidth lower than 2 and are small (compare with tables \ref{stat_CFGs}, \ref{results_CFGs}). The paper about the treewidth of C proves that CFGs without \emph{goto} statements have treewidth at most 7 \cite{Ctree}. We used methodes included in TdLib that are exact for CFGs without \emph{goto} statements. More precisely, exact reduction rules that reduce graphs of treewidth at most $4$ to the empty graph, a generic heuristic and a postprocessing based on triangulization minimization are used. They have running time $\mathcal{O}(n^{3}), \mathcal{O}(n^{3})$ and $\mathcal{O}(n)$ respectively. The authors of the paper included this "pipeline" in compilers for the computation of several NP-hard problems that occur in them, e.g. register allocation.  
+
+\begin{center}
+\begin{figure}
+\centering
+  \includegraphics[width=0.4\linewidth]{log.png}
+  \includegraphics[width=0.4\linewidth]{exp.png}
+  \caption{Algorithm 1. Left: Vertices vs. Time [s] (log scale). Right: Vertices vs. Time[s]}
+\end{figure}
+\end{center}
+
 
 \begin{center}
 \begin{table}[h!]
@@ -401,12 +471,12 @@ contiki & 1082 & 1.71/2/7 & 18.07/9/728 & 0.0007/0.0002/0.1559 \\
 fuzix & 529 & 1.97/2/6 & 20.76/12/295 & 0.0008/0.0003/0.0339 \\
 \hline
 \end{tabular}
-\captionof{table}{Results for the considered CFGs.}
+\captionof{table}{Algorithm 2. Results for the considered CFGs.}
 \label{results_CFGs}
 \end{table}
 \end{center}
 
-The computations of the TD-based algorithm on the test set of CFGs take less than a second in total, which is due to the fact that most CFGs have treewidth lower than 2 and are small (compare with tables \ref{stat_CFGs}, \ref{results_CFGs}). The paper about the treewidth of C proves that CFGs without \emph{goto} statements have treewidth at most 7 \cite{Ctree}. We used methodes included in TdLib that are exact for CFGs without \emph{goto} statements. More precisely, exact reduction rules that reduce graphs of treewidth at most $4$ to the empty graph, a generic heuristic and a postprocessing based on triangulization minimization are used. They have running time $\mathcal{O}(n^{3}), \mathcal{O}(n^{3})$ and $\mathcal{O}(n)$ respectively. The authors of the paper included this "pipeline" in compilers for the computation of several NP-hard problems that occur in them, e.g. register allocation.  
+Algorithm 1 was not able to solve any of the partial $k$-trees within 30 minutes.
 
 \begin{center}
 \begin{table}[h!]
@@ -426,16 +496,19 @@ $n$ & avg/med./max $\tw$. & avg/med./max $\VC$ & avg/med./max time[s] \\
 500 & 5.95/5/15 & 78.49/72/157 & 2.2913/0.0298/43.4646 \\
 \hline
 \end{tabular}
-\captionof{table}{Results for the considered partial $k$-trees grouped by $n$.}
+\captionof{table}{Algorithm 2. Results for the considered partial $k$-trees grouped by $n$.}
 \label{results_ktrees_n}
 \end{table}
 \end{center}
 
-By investigating the results for the partial $k$-trees grouped by $n$, we see that the running time of the TD-based algorithm depends linear (and not exponential) on $n$ (table \ref{results_ktrees_n}).
+\vspace*{-7mm}
+
+By investigating the results for the partial $k$-trees grouped by $n$, we see that the running time of the TD-based algorithm depends linear (and not exponential) on $n$ (table \ref{results_ktrees_n}). The situation is different when the results are grouped by $k$. Recall that on each bag of a TD exponentially many intermediate results (in the size of the bag) are computed and stored. For a graph of treewidth $k-1$, there exists a bag of size $k$ in an optimal TD. At this bag, $2^{k}$ intermediate results are computed. This fact is reflected in the running time of the TD-based algorithm, which is more or less doubling when incrementing $k$ (table \ref{results_ktrees_n}).
 
 \begin{center}
 \begin{table}[h!]
 \centering
+\small
 \begin{tabular}{|c|c|c|c|c|}
 \hline
 package & avg/med./max $\tw$. & avg/med./max $\VC$ & avg/med./max time[s] \\
@@ -471,12 +544,10 @@ package & avg/med./max $\tw$. & avg/med./max $\VC$ & avg/med./max time[s] \\
 15 & 9.45/11/15 & 47.46/38/157 & 6.2944/0.2169/44.1330 \\
 \hline
 \end{tabular}
-\captionof{table}{Results for the considered partial $k$-trees.}
+\captionof{table}{Algorithm 2. Results for the considered partial $k$-trees.}
 \label{results_ktrees_k}
 \end{table}
 \end{center}
-
-The situation is different when the results are grouped by $k$. Recall that on each bag of a TD exponentially (in the size of the bag) many intermediate results are computed and stored. For a graph of treewidth $k-1$, there exists a bag of size $k$ in an optimal TD. At this bag, $2^{k}$ intermediate results are computed. This fact is reflected in the running time of the TD-based algorithm, which is more or less doubling when incrementing $k$ (table \ref{results_ktrees_n}).
 
 \begin{center}
 \begin{table}[h!]
@@ -492,12 +563,14 @@ $11 \leq \tw \leq 20$ & 16.04/16/20 & 36.08/24/170 & 31.3456/1.7467/447.1208 \\
 $21 \leq \tw \leq 25$ & 26.44/24/25 & 140.29/56/682 & 2469.1672/2219.0984/7198.5197 \\
 \hline
 \end{tabular}
-\captionof{table}{Results for the considered partial $k$-trees.}
+\captionof{table}{Algorithm 2. Results for the considered partial $k$-trees.}
 \label{results_named}
 \end{table}
 \end{center}
 
-TODO: Discussion
+Indeed, dealing with the most sophisticated "named" graphs having treewidth larger than 20 is tricky: the running time for these graphs ranged from several minutes to several hours. For the hardest graph, it was necessary to store about $1000 \cdot 2^{26}$ intermediate results, which took about 4TB main memory before applying "tricks". One of the "tricks" was to encode sets as natural numbers (binary decoding), which reduced the necessary size of the main memory to 40GB. Thereby, over 70 billion computations have been performed, which took approximately 2 hours. The 3 remaining graphs having treewidth 26, 27 and 29 could be solved in less than one day. \\
+
+Regarding algorithm 1, only the smallest 10 graphs included in the "named" graphs could be solved in less than one day.
 
 \section{Summary}
 
@@ -539,8 +612,6 @@ We experimentally showed that TD-based algorithms may be of practical use for so
 
 
 \end{thebibliography}
-
-\newpage
 
 \section{Appendix}
 
